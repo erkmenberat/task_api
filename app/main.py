@@ -17,6 +17,16 @@ async def read_tasks(db: Session=Depends(get_db)):
     tasks = db.query(Task).all()
     return tasks
 
+@app.get("/health")
+def health_check(db: Session = Depends(get_db)):
+    try:
+        from sqlalchemy import text
+        db.execute(text("SELECT 1"))
+        return {"status": "ok", "database": "connected"}
+    except Exception as e:
+        return {"status": "error", "database": str(e)}
+    
+    
 # @app.post("/tasks/{task_title}", response_model=Task)
 # async def create_task(task: Task):
 #     task.id = uuid4()

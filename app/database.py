@@ -22,7 +22,7 @@ def get_db():
     finally:
         db.close()
 
-def test(): 
-    from sqlalchemy import text
-    with engine.connect() as conn: 
-        return conn.execute(text("Select 1")).scalar()
+# def test(): 
+#     from sqlalchemy import text
+#     with engine.connect() as conn: 
+#         return conn.execute(text("Select 1")).scalar()
