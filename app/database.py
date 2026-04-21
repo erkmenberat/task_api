@@ -9,6 +9,8 @@ load_dotenv()
 
 database_url = f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('POSTGRES_DB')}" ## diese url darf nicht hier sein und muss von git ignoriert werden.
 
+print("DB URL:", os.getenv('POSTGRES_USER'))
+print("DB HOST:", os.getenv('DB_HOST'))
 
 engine = create_engine(database_url)
 SessionLocal = sessionmaker(bind=engine)
