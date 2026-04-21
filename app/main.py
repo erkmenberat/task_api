@@ -9,13 +9,17 @@ from schemas.schema import TaskResponse
 from models.models import Task
 
 
-app = FastAPI(title = "Todo API")
+app = FastAPI(root_path="/api")
 
 
-@app.get("/tasks/", response_model=List[TaskResponse])
-async def read_tasks(db: Session=Depends(get_db)):
-    tasks = db.query(Task).all()
-    return tasks
+###
+### --> issue -> /docs "not found"
+###
+
+    # @app.get("/tasks/", response_model=List[TaskResponse])
+    # async def read_tasks(db: Session=Depends(get_db)):
+    #     tasks = db.query(Task).all()
+    #     return tasks
 
 @app.get("/health")
 def health_check(db: Session = Depends(get_db)):
@@ -26,7 +30,7 @@ def health_check(db: Session = Depends(get_db)):
     except Exception as e:
         return {"status": "error", "database": str(e)}
     
-    
+
 # @app.post("/tasks/{task_title}", response_model=Task)
 # async def create_task(task: Task):
 #     task.id = uuid4()
