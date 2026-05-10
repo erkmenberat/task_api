@@ -1,2 +1,2 @@
 # task_api
-a API for my Todo App
+just for learning the Syntax.
